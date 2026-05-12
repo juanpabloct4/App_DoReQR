@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "345077039008",
+    "project_id": "doreqr",
+    "storage_bucket": "doreqr.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345077039008:android:b312a5b8e212053d63eec5",
+        "android_client_info": {
+          "package_name": "com.example.doreqr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7M0R2HitT7L4QOR3tOxUffj39wQuEAyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
