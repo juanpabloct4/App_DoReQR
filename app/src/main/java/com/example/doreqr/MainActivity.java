@@ -2,8 +2,8 @@ package com.example.doreqr;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,28 +11,124 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnRegistrarLogin;
+    Button btnIngresar;
+
+    TextInputEditText txtUsuario, txtPassword;
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_main);
+
+        db = FirebaseFirestore.getInstance();
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
+            v.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom
+            );
+
             return insets;
         });
 
         btnRegistrarLogin = findViewById(R.id.btnRegistrar);
-        btnRegistrarLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Registro.class);
-                startActivityForResult(intent, 0);
-            }
+        btnIngresar = findViewById(R.id.btnIngresar);
+
+        txtUsuario = findViewById(R.id.txtUsuario);
+        txtPassword = findViewById(R.id.txtPassword);
+
+        btnRegistrarLogin.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    Registro.class
+            );
+
+            startActivity(intent);
+
         });
+
+        btnIngresar.setOnClickListener(v -> validarUsuario());
+    }
+
+    private void validarUsuario() {
+
+        String usuario = txtUsuario.getText().toString().trim();
+
+        String password = txtPassword.getText().toString().trim();
+
+        if(usuario.isEmpty() || password.isEmpty()) {
+
+            Toast.makeText(
+                    this,
+                    "Completa todos los campos",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        db.collection("alumnos")
+                .whereEqualTo("usuario", usuario)
+                .whereEqualTo("password", password)
+                .get()
+                .addOnCompleteListener(task -> {
+
+                    if(task.isSuccessful()) {
+
+                        boolean existe = false;
+
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+
+                            existe = true;
+
+                            break;
+                        }
+
+                        if(existe) {
+
+                            Toast.makeText(
+                                    this,
+                                    "Bienvenido",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+
+                            // AQUÍ ABRES OTRA PANTALLA
+
+                        } else {
+
+                            Toast.makeText(
+                                    this,
+                                    "Usuario o contraseña incorrectos",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+
+                    } else {
+
+                        Toast.makeText(
+                                this,
+                                "Error al consultar",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                });
     }
 }
