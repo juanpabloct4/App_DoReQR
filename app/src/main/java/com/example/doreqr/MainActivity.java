@@ -69,19 +69,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validarUsuario() {
-
         String usuario = txtUsuario.getText().toString().trim();
-
         String password = txtPassword.getText().toString().trim();
 
-        if(usuario.isEmpty() || password.isEmpty()) {
+        // LOGIN MAESTRO
+        if(usuario.equals("maestro") && password.equals("maestro")) {
+            Toast.makeText(
+                    this,
+                    "Bienvenido Maestro",
+                    Toast.LENGTH_SHORT
+            ).show();
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    ActivityMenuMaestro.class
+            );
+            startActivity(intent);
+            finish();
+            return;
+        }
 
+        // VALIDACIÓN NORMAL
+        if(usuario.isEmpty() || password.isEmpty()) {
             Toast.makeText(
                     this,
                     "Completa todos los campos",
                     Toast.LENGTH_SHORT
             ).show();
-
             return;
         }
 
@@ -92,9 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
 
                     if(task.isSuccessful()) {
-
                         boolean existe = false;
-
                         for(QueryDocumentSnapshot document : task.getResult()) {
 
                             existe = true;
@@ -103,17 +114,21 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         if(existe) {
-
                             Toast.makeText(
                                     this,
                                     "Bienvenido",
                                     Toast.LENGTH_SHORT
                             ).show();
 
-                            // AQUÍ ABRES OTRA PANTALLA
+                            Intent intent = new Intent(
+                                    MainActivity.this,
+                                    ActivityMenuAlumno.class
+                            );
 
+                            startActivity(intent);
+
+                            finish();
                         } else {
-
                             Toast.makeText(
                                     this,
                                     "Usuario o contraseña incorrectos",
@@ -122,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     } else {
-
                         Toast.makeText(
                                 this,
                                 "Error al consultar",

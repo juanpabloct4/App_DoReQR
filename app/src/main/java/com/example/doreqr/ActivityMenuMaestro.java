@@ -8,6 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class ActivityMenuMaestro extends AppCompatActivity {
 
     @Override
@@ -15,10 +17,33 @@ public class ActivityMenuMaestro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu_maestro);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navMenuMaestro);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int itemid = item.getItemId();
+
+            if(itemid == R.id.FragPasarLista){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameContainer, new FragmentoLista())
+                        .commit();
+            }
+            else if(itemid == R.id.FragConsulta){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameContainer, new FragmentoConsulta())
+                        .commit();
+            }
+            else if(itemid == R.id.FragHistorial){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameContainer, new FragmentoHistorial())
+                        .commit();
+            }
+
+            return true;
         });
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frameContainer, new FragmentoLista())
+                .commit();
     }
 }

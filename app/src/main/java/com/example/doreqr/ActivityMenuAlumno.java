@@ -8,6 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class ActivityMenuAlumno extends AppCompatActivity {
 
     @Override
@@ -15,10 +17,27 @@ public class ActivityMenuAlumno extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu_alumno);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navMenu);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int itemid = item.getItemId();
+
+            if(itemid == R.id.fragQR){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameContainer, new FragmentoGenerarQR())
+                        .commit();
+            }
+            else if(itemid == R.id.fragPerfil){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameContainer, new Framento_MiCuenta())
+                        .commit();
+            }
+            return true;
         });
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frameContainer, new FragmentoGenerarQR())
+                .commit();
     }
 }
