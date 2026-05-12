@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragQR"
+        android:icon="@drawable/qr_code_24px"
+        android:title="Mi QR"/>
+    <item
+        android:id="@+id/fragPerfil"
+        android:icon="@drawable/ic_person"
+        android:title="Mi Perfil"/>
+</menu>

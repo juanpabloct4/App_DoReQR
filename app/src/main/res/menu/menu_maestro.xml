@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Frag1"
+        android:icon="@drawable/scan_24px"
+        android:title="Pasar Lista"/>
+    <item
+        android:id="@+id/Frag2"
+        android:icon="@drawable/manage_search_24px"
+        android:title="Consultar"/>
+    <item
+        android:id="@+id/Frag3"
+        android:icon="@drawable/history_24px"
+        android:title="Historial"/>
+</menu>

@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoReQR">
         <activity
+            android:name=".ActivityMenuAlumno"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityMenuMaestro"
+            android:exported="false" />
+        <activity
+            android:name=".Maestro"
+            android:exported="false" />
+        <activity
             android:name=".Registro"
             android:exported="false" />
         <activity
