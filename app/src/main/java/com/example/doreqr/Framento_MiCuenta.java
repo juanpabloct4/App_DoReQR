@@ -8,12 +8,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
+import android.widget.TextView;
+
+import android.content.Intent;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentSnapshot;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Framento_MiCuenta#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Framento_MiCuenta extends Fragment {
+
+    // VARIABLES FIREBASE Y COMPONENTES
+    TextView tvNombre, tvUsuario, tvTelefono,
+            tvFecha, tvInstrumento, tvGenero;
+
+    Button btnEditar;
+
+    FirebaseFirestore db;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +75,89 @@ public class Framento_MiCuenta extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alumno_micuenta, container, false);
+
+        View view = inflater.inflate(
+                R.layout.fragment_alumno_micuenta,
+                container,
+                false
+        );
+
+        db = FirebaseFirestore.getInstance();
+
+        tvNombre = view.findViewById(R.id.tvNombre);
+        tvUsuario = view.findViewById(R.id.tvUsuario);
+        tvTelefono = view.findViewById(R.id.tvTelefono);
+        tvFecha = view.findViewById(R.id.tvFecha);
+        tvInstrumento = view.findViewById(R.id.tvInstrumento);
+        tvGenero = view.findViewById(R.id.tvGenero);
+
+        btnEditar = view.findViewById(R.id.btnEditar);
+
+        cargarDatosAlumno();
+
+        btnEditar.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    getContext(),
+                    Registro.class
+            );
+
+            intent.putExtra("modoEditar", true);
+
+            intent.putExtra(
+                    "idAlumno",
+                    ActivityMenuAlumno.idAlumnoActual
+            );
+
+            startActivity(intent);
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        cargarDatosAlumno();
+    }
+
+    private void cargarDatosAlumno() {
+
+        String idAlumno =
+                ActivityMenuAlumno.idAlumnoActual;
+
+        db.collection("alumnos")
+                .document(idAlumno)
+                .get()
+
+                .addOnSuccessListener(doc -> {
+
+                    if(doc.exists()) {
+
+                        tvNombre.setText(
+                                doc.getString("nombre")
+                        );
+
+                        tvUsuario.setText(
+                                doc.getString("usuario")
+                        );
+
+                        tvTelefono.setText(
+                                doc.getString("telefono")
+                        );
+
+                        tvFecha.setText(
+                                doc.getString("fechaNacimiento")
+                        );
+
+                        tvInstrumento.setText(
+                                doc.getString("instrumento")
+                        );
+
+                        tvGenero.setText(
+                                doc.getString("sexo")
+                        );
+                    }
+                });
     }
 }

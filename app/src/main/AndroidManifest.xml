@@ -18,9 +18,6 @@
             android:name=".ActivityMenuMaestro"
             android:exported="false" />
         <activity
-            android:name=".Maestro"
-            android:exported="false" />
-        <activity
             android:name=".Registro"
             android:exported="false" />
         <activity

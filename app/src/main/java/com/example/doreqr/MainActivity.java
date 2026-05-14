@@ -110,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
                             existe = true;
 
+                            ActivityMenuAlumno.usuarioActual =
+                                    document.getString("usuario");
+
+                            ActivityMenuAlumno.idAlumnoActual =
+                                    document.getId();
+
                             break;
                         }
 
@@ -124,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                                     MainActivity.this,
                                     ActivityMenuAlumno.class
                             );
+                            intent.putExtra("usuario", usuario);
 
                             startActivity(intent);
 
