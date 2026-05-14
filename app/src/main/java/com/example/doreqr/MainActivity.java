@@ -104,29 +104,54 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
 
                     if(task.isSuccessful()) {
+
                         boolean existe = false;
-                        for(QueryDocumentSnapshot document : task.getResult()) {
+
+                        // DECLARAR VARIABLES AQUÍ
+                        String idAlumno = "";
+                        String nombreAlumno = "";
+
+                        for(QueryDocumentSnapshot document
+                                : task.getResult()) {
 
                             existe = true;
 
-                            // Obtén el ID y nombre del documento
-                            String idAlumno = document.getId();
-                            String nombreAlumno = document.getString("nombre");
+                            idAlumno =
+                                    document.getId();
+
+                            nombreAlumno =
+                                    document.getString("nombre");
+
+                            ActivityMenuAlumno.usuarioActual =
+                                    document.getString("usuario");
+
+                            ActivityMenuAlumno.idAlumnoActual =
+                                    document.getId();
+
+                            break;
+                        }
+
+                        if(existe) {
+                            Toast.makeText(
+                                    this,
+                                    "Bienvenido",
+                                    Toast.LENGTH_SHORT
+                            ).show();
 
                             Intent intent = new Intent(
                                     MainActivity.this,
                                     ActivityMenuAlumno.class
                             );
+                            intent.putExtra("usuario", usuario);
 
                             // Pasa el ID y nombre al siguiente activity
                             intent.putExtra("idAlumno", idAlumno);
                             intent.putExtra("nombreAlumno", nombreAlumno);
 
                             startActivity(intent);
-                            finish();
-                            break;
-                        }
 
+                            finish();
+                        }
                         if(!existe) {
                             Toast.makeText(
                                     this,

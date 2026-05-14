@@ -12,6 +12,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityMenuAlumno extends AppCompatActivity {
 
+    public static String usuarioActual;
+    public static String idAlumnoActual;
+
     String idAlumno, nombreAlumno;
 
     @Override
@@ -26,7 +29,11 @@ public class ActivityMenuAlumno extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navMenu);
 
+        // RECIBIR USUARIO
+        usuarioActual = getIntent().getStringExtra("usuario");
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
+
             int itemid = item.getItemId();
 
             if(itemid == R.id.fragQR){
@@ -40,8 +47,13 @@ public class ActivityMenuAlumno extends AppCompatActivity {
                         .commit();
             }
             else if(itemid == R.id.fragPerfil){
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameContainer, new Framento_MiCuenta())
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(
+                                R.id.frameContainer,
+                                new Framento_MiCuenta()
+                        )
                         .commit();
             }
             return true;
