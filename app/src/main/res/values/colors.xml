@@ -2,5 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="menu">#1976D2</color>
+
+    <color name="colorPrimary">#1A0533</color>
+    <color name="colorSecundario">#6A0DAD</color>
+    <color name="colorAccent">#FFD700</color>
+    <color name="colorFondo">#F5F5F5</color>
+    <color name="menu">#1A0533</color>
 </resources>

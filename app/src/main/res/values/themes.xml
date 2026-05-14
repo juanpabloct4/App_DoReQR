@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.DoReQR" parent="Base.Theme.DoReQR" />
+
+    <!-- Estilo Botones -->
+    <style name="Botones">
+        <item name="android:background">@drawable/btn_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
 </resources>
