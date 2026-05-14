@@ -13,6 +13,7 @@ import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 import androidx.activity.result.ActivityResultLauncher;
 import com.journeyapps.barcodescanner.ScanIntentResult;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FragmentoLista extends Fragment {
 
@@ -58,10 +59,52 @@ public class FragmentoLista extends Fragment {
     }
 
     private void guardarAsistencia(String idAlumno) {
-        // Aquí después conectamos Firebase
-        // Por ahora solo muestra el diálogo de éxito
-        mostrarDialog("¡Asistencia registrada!",
-                "Alumno: " + idAlumno + "\nSe guardó correctamente", true);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Primero busca el nombre del alumno
+        db.collection("alumnos")
+                .document(idAlumno)
+                .get()
+                .addOnSuccessListener(document -> {
+
+                    if(document.exists()) {
+
+                        String nombreAlumno = document.getString("nombre");
+
+                        // Obtiene fecha y hora actual
+                        String fecha = new java.text.SimpleDateFormat(
+                                "dd/MM/yyyy", java.util.Locale.getDefault())
+                                .format(new java.util.Date());
+
+                        String hora = new java.text.SimpleDateFormat(
+                                "HH:mm", java.util.Locale.getDefault())
+                                .format(new java.util.Date());
+
+                        // Crea el objeto asistencia
+                        java.util.Map<String, Object> asistencia = new java.util.HashMap<>();
+                        asistencia.put("idAlumno", idAlumno);
+                        asistencia.put("nombreAlumno", nombreAlumno);
+                        asistencia.put("fecha", fecha);
+                        asistencia.put("hora", hora);
+
+                        // Guarda en Firestore
+                        db.collection("asistencias")
+                                .add(asistencia)
+                                .addOnSuccessListener(ref ->
+                                        mostrarDialog("¡Asistencia registrada!",
+                                                "Alumno: " + nombreAlumno +
+                                                        "\nFecha: " + fecha +
+                                                        "\nHora: " + hora, true)
+                                )
+                                .addOnFailureListener(e ->
+                                        mostrarDialog("Error", "No se pudo guardar la asistencia", false)
+                                );
+
+                    } else {
+                        mostrarDialog("Error", "Alumno no encontrado", false);
+                    }
+                });
     }
 
     private void mostrarDialog(String titulo, String mensaje, boolean exito) {
