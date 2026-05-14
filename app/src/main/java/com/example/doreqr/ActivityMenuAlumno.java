@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -55,6 +57,9 @@ public class ActivityMenuAlumno extends AppCompatActivity {
                                 new Framento_MiCuenta()
                         )
                         .commit();
+            } else if(itemid == R.id.logout){
+
+                mostrarDialogCerrarSesion();
             }
             return true;
         });
@@ -68,5 +73,37 @@ public class ActivityMenuAlumno extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frameContainer, frag)
                 .commit();
+    }
+
+    private void mostrarDialogCerrarSesion() {
+
+        new AlertDialog.Builder(this)
+
+                .setTitle("Cerrar sesión")
+
+                .setMessage(
+                        "¿Deseas cerrar sesión?"
+                )
+
+                .setPositiveButton("Sí",
+                        (dialog, which) -> {
+
+                            usuarioActual = null;
+
+                            idAlumnoActual = null;
+
+                            Intent intent = new Intent(
+                                    ActivityMenuAlumno.this,
+                                    MainActivity.class
+                            );
+
+                            startActivity(intent);
+
+                            finish();
+                        })
+
+                .setNegativeButton("Cancelar", null)
+
+                .show();
     }
 }

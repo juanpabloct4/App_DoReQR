@@ -8,4 +8,9 @@
         android:id="@+id/fragPerfil"
         android:icon="@drawable/ic_person"
         android:title="Mi Perfil"/>
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="Salir"/>
 </menu>

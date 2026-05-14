@@ -8,6 +8,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.content.Intent;
+
+import androidx.appcompat.app.AlertDialog;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityMenuMaestro extends AppCompatActivity {
@@ -37,6 +41,9 @@ public class ActivityMenuMaestro extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameContainer, new FragmentoHistorial())
                         .commit();
+            } else if(itemid == R.id.logout){
+
+                mostrarDialogCerrarSesion();
             }
 
             return true;
@@ -45,5 +52,33 @@ public class ActivityMenuMaestro extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frameContainer, new FragmentoLista())
                 .commit();
+    }
+
+    private void mostrarDialogCerrarSesion() {
+
+        new AlertDialog.Builder(this)
+
+                .setTitle("Cerrar sesión")
+
+                .setMessage(
+                        "¿Deseas cerrar sesión?"
+                )
+
+                .setPositiveButton("Sí",
+                        (dialog, which) -> {
+
+                            Intent intent = new Intent(
+                                    ActivityMenuMaestro.this,
+                                    MainActivity.class
+                            );
+
+                            startActivity(intent);
+
+                            finish();
+                        })
+
+                .setNegativeButton("Cancelar", null)
+
+                .show();
     }
 }
