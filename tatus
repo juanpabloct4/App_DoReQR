@@ -1,0 +1,86 @@
+[33mcommit 51e57641c5b0d1e6ffbff8ee2e5c7af978932de8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcamara[m[33m, [m[1;31morigin/camara[m[33m)[m
+Author: berelime81 <bere.c.h.1234567@gmail.com>
+Date:   Tue May 12 15:49:36 2026 -0600
+
+    Implementación de cámara para escanear qr
+
+[33mcommit 2814de5fcc45bac6f944d8556d0fbed8ce17aa40[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Tue May 12 12:46:38 2026 -0600
+
+    Navegación Integrada
+
+[33mcommit b23a90e2f8048523b0019d1963263dc4b3ab1f22[m
+Merge: 4d3d342 7b82180
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Tue May 12 12:18:35 2026 -0600
+
+    Merge branch 'ConexionBD'
+
+[33mcommit 7b821800644724568e0cac405bcdff85aeafd2bf[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Tue May 12 12:16:42 2026 -0600
+
+    Re diseño al Registro y Registros enviados a la BD y Login funcional
+
+[33mcommit 4d3d3420bcc36db1954d17f8eb6641647e95a673[m
+Merge: bb14a6c 7404cd1
+Author: berelime81 <bere.c.h.1234567@gmail.com>
+Date:   Mon May 11 21:40:09 2026 -0600
+
+    Merge branch 'maestro'
+
+[33mcommit 7404cd13dd6001e0e71e25b7211d79336e45f9cb[m[33m ([m[1;31morigin/maestro[m[33m, [m[1;32mmaestro[m[33m)[m
+Author: berelime81 <bere.c.h.1234567@gmail.com>
+Date:   Mon May 11 21:37:49 2026 -0600
+
+    Se agregaron menu maestro, alumno y fragmentos
+
+[33mcommit 0db8e2b804d97a504fe088f4eaac70879f55a3f1[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Mon May 11 21:34:53 2026 -0600
+
+    Rediseño al Login
+
+[33mcommit d8fc8ffbcfbdd3871b5d38d4da4850892a66a357[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Mon May 11 21:14:18 2026 -0600
+
+    Conexión a la Base de Datos
+
+[33mcommit bb14a6ca93a797b1fbeee3f59a34d462e82223ca[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Thu May 7 15:47:24 2026 -0600
+
+    Se agregó la navegacion Login-Registro y se agregaron iconos al formulario
+
+[33mcommit 7b3853b96efb1c7f4965fbc30e94c35c2ae99c0c[m
+Merge: 95cfe30 26db107
+Author: berelime81 <bere.c.h.1234567@gmail.com>
+Date:   Thu May 7 14:49:06 2026 -0600
+
+    Merge rama registro
+
+[33mcommit 26db107926b7ba05eb1ce610bc978bed31b564b6[m[33m ([m[1;32mregistro[m[33m)[m
+Author: berelime81 <bere.c.h.1234567@gmail.com>
+Date:   Thu May 7 14:41:15 2026 -0600
+
+    Se agregó el diseño base del layout Registro
+
+[33mcommit 95cfe30796648d7eed00f22fe891b8f35d7c68ed[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Thu May 7 13:52:47 2026 -0600
+
+    Se agregaron íconos al login
+
+[33mcommit 79ef850ed533a44aa1ac67bc57de576e699cef8e[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Thu May 7 13:26:10 2026 -0600
+
+    Se agregó el diseño base del login
+
+[33mcommit 5296da874d7d65160f34436d94bc9126664eb9fe[m[33m ([m[1;31morigin/registro[m[33m)[m
+Author: Juan Pablo Cielo <juanpabloct4@gmail.com>
+Date:   Thu May 7 12:21:31 2026 -0600
+
+    Creación del proyecto

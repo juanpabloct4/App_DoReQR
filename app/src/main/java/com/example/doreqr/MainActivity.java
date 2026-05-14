@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             ).show();
             return;
         }
-
         db.collection("alumnos")
                 .whereEqualTo("usuario", usuario)
                 .whereEqualTo("password", password)
@@ -110,25 +109,25 @@ public class MainActivity extends AppCompatActivity {
 
                             existe = true;
 
-                            break;
-                        }
-
-                        if(existe) {
-                            Toast.makeText(
-                                    this,
-                                    "Bienvenido",
-                                    Toast.LENGTH_SHORT
-                            ).show();
+                            // Obtén el ID y nombre del documento
+                            String idAlumno = document.getId();
+                            String nombreAlumno = document.getString("nombre");
 
                             Intent intent = new Intent(
                                     MainActivity.this,
                                     ActivityMenuAlumno.class
                             );
 
-                            startActivity(intent);
+                            // Pasa el ID y nombre al siguiente activity
+                            intent.putExtra("idAlumno", idAlumno);
+                            intent.putExtra("nombreAlumno", nombreAlumno);
 
+                            startActivity(intent);
                             finish();
-                        } else {
+                            break;
+                        }
+
+                        if(!existe) {
                             Toast.makeText(
                                     this,
                                     "Usuario o contraseña incorrectos",

@@ -44,6 +44,15 @@
                     android:src="@drawable/codigo_alumno"
                     android:contentDescription="Código QR del alumno"/>
 
+                <TextView
+                    android:id="@+id/tvNombreAlumno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"/>
+
                 <Button
                     android:id="@+id/btnGenerarQR"
                     android:layout_width="match_parent"
