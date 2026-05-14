@@ -49,6 +49,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"/>
 
+    <!-- TOTAL DE ALUMNOS -->
+    <TextView
+        android:id="@+id/tvTotalAlumnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total de alumnos: 0"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"/>
+
     <!-- LISTA -->
 
     <androidx.recyclerview.widget.RecyclerView

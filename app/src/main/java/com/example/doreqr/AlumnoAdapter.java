@@ -11,6 +11,8 @@ import java.util.Calendar;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 public class AlumnoAdapter
@@ -81,11 +83,70 @@ public class AlumnoAdapter
                     .setPositiveButton("Cerrar", null)
                     .show();
         });
+
+        holder.itemView.setOnLongClickListener(v -> {
+
+            new AlertDialog.Builder(context)
+                    .setTitle("Eliminar alumno")
+                    .setMessage(
+                            "¿Deseas eliminar a "
+                                    + alumno.getNombre()
+                                    + "?"
+                    )
+
+                    .setPositiveButton("Eliminar",
+                            (dialog, which) -> {
+
+                                eliminarAlumno(alumno);
+                            })
+
+                    .setNegativeButton("Cancelar", null)
+
+                    .show();
+
+            return true;
+        });
     }
 
     @Override
     public int getItemCount() {
         return listaAlumnos.size();
+    }
+
+    private void eliminarAlumno(Alumno alumno) {
+
+        FirebaseFirestore db =
+                FirebaseFirestore.getInstance();
+
+        db.collection("alumnos")
+                .whereEqualTo(
+                        "usuario",
+                        alumno.getUsuario()
+                )
+
+                .get()
+
+                .addOnSuccessListener(query -> {
+
+                    if(!query.isEmpty()) {
+
+                        String id =
+                                query.getDocuments()
+                                        .get(0)
+                                        .getId();
+
+                        db.collection("alumnos")
+                                .document(id)
+                                .delete()
+
+                                .addOnSuccessListener(unused -> {
+
+                                    listaAlumnos.remove(alumno);
+
+                                    notifyDataSetChanged();
+                                });
+                    }
+                });
     }
 
     private int calcularEdad(String fechaNacimiento) {

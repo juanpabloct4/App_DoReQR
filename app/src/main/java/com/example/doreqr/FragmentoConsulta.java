@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,6 +33,8 @@ public class FragmentoConsulta extends Fragment {
     List<Alumno> listaOriginal;
 
     AlumnoAdapter adapter;
+
+    TextView tvTotalAlumnos;
 
     public FragmentoConsulta() {
         // Required empty public constructor
@@ -60,6 +63,9 @@ public class FragmentoConsulta extends Fragment {
 
         spinnerInstrumento =
                 view.findViewById(R.id.spinnerInstrumento);
+
+        tvTotalAlumnos =
+                view.findViewById(R.id.tvTotalAlumnos);
 
         // RecyclerView
         recyclerAlumnos.setLayoutManager(
@@ -200,6 +206,11 @@ public class FragmentoConsulta extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+
+                    tvTotalAlumnos.setText(
+                            "Total de alumnos: "
+                                    + listaAlumnos.size()
+                    );
                 });
     }
 
@@ -234,5 +245,9 @@ public class FragmentoConsulta extends Fragment {
         }
 
         adapter.notifyDataSetChanged();
+        tvTotalAlumnos.setText(
+                "Total de alumnos: "
+                        + listaAlumnos.size()
+        );
     }
 }
