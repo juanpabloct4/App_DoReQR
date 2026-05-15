@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#1A0533</color>
-    <color name="colorSecundario">#6A0DAD</color>
-    <color name="colorAccent">#FFD700</color>
-    <color name="colorFondo">#F5F5F5</color>
-    <color name="menu">#1A0533</color>
+    <color name="colorPrimary">#2E3192</color>    <!-- Azul oscuro del QR -->
+    <color name="colorSecundario">#00AEEF</color> <!-- Azul turquesa del QR -->
+    <color name="colorAccent">#FFFFFF</color>     <!-- Blanco -->
+    <color name="colorFondo">#F5F5F5</color>      <!-- Gris claro -->
+    <color name="menu">#2E3192</color>            <!-- Azul oscuro -->
 </resources>

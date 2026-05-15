@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/colorPrimary"
     android:fillViewport="true">
 
     <LinearLayout
@@ -15,7 +15,6 @@
         android:padding="40dp"
         android:paddingBottom="100dp">
 
-        <!-- CARD LOGIN -->
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -36,6 +35,7 @@
                     android:text="Regístrate"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:gravity="center"
                     android:layout_marginBottom="10dp"/>
 
@@ -54,7 +54,6 @@
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -171,7 +170,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Registrarse"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorSecundario"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    android:padding="14dp"/>
 
             </LinearLayout>
 
