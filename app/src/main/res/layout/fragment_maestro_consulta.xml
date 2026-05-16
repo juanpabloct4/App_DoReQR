@@ -6,107 +6,140 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorFondo"
-    android:padding="16dp"
-    android:paddingBottom="100dp">
+    android:layout_marginBottom="80dp">
 
-    <!-- TÍTULO -->
-    <TextView
-        android:id="@+id/tvTitulo"
+    <!-- FRANJA SUPERIOR -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Consultar Alumnos"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="vertical">
 
-    <!-- CARD DE FILTROS -->
-    <androidx.cardview.widget.CardView
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consultar Alumnos"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+    <!-- CONTENIDO -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
-        android:layout_marginBottom="12dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingBottom="100dp">
 
-        <LinearLayout
+        <!-- CARD DE FILTROS -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="10dp">
 
-            <!-- Subtítulo filtros -->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Filtros"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:gravity="center"
-                android:layout_marginBottom="10dp"/>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <!-- SEXO -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Filtrar por género"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:textColor="#888888"/>
+                <!-- TÍTULO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Filtros"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp"/>
 
-            <Spinner
-                android:id="@+id/spinnerSexo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"/>
+                <!-- CONTENEDOR HORIZONTAL -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorSecundario"
-                android:alpha="0.2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                    <!-- GÉNERO -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="6dp">
 
-            <!-- INSTRUMENTO -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Filtrar por instrumento"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:textColor="#888888"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Género"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:textColor="#888888"/>
 
-            <Spinner
-                android:id="@+id/spinnerInstrumento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"/>
+                        <Spinner
+                            android:id="@+id/spinnerSexo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"/>
 
-        </LinearLayout>
+                    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+                    <!-- INSTRUMENTO -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="6dp">
 
-    <!-- TOTAL DE ALUMNOS -->
-    <TextView
-        android:id="@+id/tvTotalAlumnos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total de alumnos: 0"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textColor="@color/colorPrimary"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Instrumento"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:textColor="#888888"/>
 
-    <!-- LISTA -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerAlumnos"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="4dp"/>
+                        <Spinner
+                            android:id="@+id/spinnerInstrumento"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- TOTAL -->
+        <TextView
+            android:id="@+id/tvTotalAlumnos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total de alumnos: 0"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- LISTA -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerAlumnos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

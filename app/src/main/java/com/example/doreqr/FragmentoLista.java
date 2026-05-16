@@ -14,6 +14,7 @@ import com.journeyapps.barcodescanner.ScanOptions;
 import androidx.activity.result.ActivityResultLauncher;
 import com.journeyapps.barcodescanner.ScanIntentResult;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.Timestamp;
 
 public class FragmentoLista extends Fragment {
 
@@ -87,6 +88,10 @@ public class FragmentoLista extends Fragment {
                         asistencia.put("nombreAlumno", nombreAlumno);
                         asistencia.put("fecha", fecha);
                         asistencia.put("hora", hora);
+                        asistencia.put(
+                                "timestamp",
+                                Timestamp.now()
+                        );
 
                         // Guarda en Firestore
                         db.collection("asistencias")

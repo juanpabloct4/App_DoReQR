@@ -1,11 +1,15 @@
 package com.example.doreqr;
 
+import com.google.firebase.Timestamp;
+
 public class Asistencia {
 
     String nombreAlumno;
     String hora;
     String fecha;
     String idAlumno;
+
+    Timestamp timestamp;
 
     public Asistencia() {
     }
@@ -24,5 +28,9 @@ public class Asistencia {
 
     public String getIdAlumno() {
         return idAlumno;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 }

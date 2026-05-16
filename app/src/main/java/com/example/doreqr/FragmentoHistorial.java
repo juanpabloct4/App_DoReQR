@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,10 @@ public class FragmentoHistorial extends Fragment {
     private void cargarAsistencias() {
 
         db.collection("asistencias")
+                .orderBy(
+                        "timestamp",
+                        Query.Direction.DESCENDING
+                )
                 .get()
 
                 .addOnSuccessListener(queryDocumentSnapshots -> {
